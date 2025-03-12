@@ -81,6 +81,12 @@ export default class Touchpad {
         document.addEventListener("touchend", this.#handleTouchend.bind(this));
         document.addEventListener("touchcancel", this.#handleTouchend.bind(this));
         document.addEventListener("touchmove", this.#handleTouchmove.bind(this));
+
+        requirejs(['app/pressure.js'], (Pressure) => {
+            Pressure.config({
+                polyfill: true
+            });
+        });
     }
 
     configure(config) {
