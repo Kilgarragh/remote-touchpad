@@ -86,6 +86,16 @@ export default class Touchpad {
             Pressure.config({
                 polyfill: true
             });
+
+            Pressure.set(":root", {
+                startDeepPress: (event) => {
+                    this.#inputController.pointerButton(POINTER_BUTTON_LEFT, true);
+                },
+
+                endDeepPress: (event) => {
+                    this.#inputController.pointerButton(POINTER_BUTTON_LEFT, false);
+                }
+            }, {only: "touch"});
         });
     }
 
